@@ -5,11 +5,15 @@ import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.NonTransientResourceException;
 import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.UnexpectedInputException;
+import org.springframework.stereotype.Component;
 
-public class S3FileReader implements ItemReader<TransactionFileDto> {
+import java.util.List;
+
+@Component
+public class S3FileReader implements ItemReader<List<TransactionFileDto>> {
 
     @Override
-    public TransactionFileDto read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
+    public List<TransactionFileDto> read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
         System.out.println("transactionFileReader");
         return null;
     }

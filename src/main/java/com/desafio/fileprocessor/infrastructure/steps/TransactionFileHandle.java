@@ -16,6 +16,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import java.util.List;
+
 @Configuration
 public class TransactionFileHandle {
 
@@ -25,11 +27,11 @@ public class TransactionFileHandle {
     @Bean
     public Step transactionFileHandleStep(
             JobRepository jobRepository,
-            ItemReader<TransactionFileDto> transactionFileReader,
-            ItemProcessor<TransactionFileDto, Transaction> transactionConverter,
-            ItemWriter<Transaction> databaseWriter) {
+            ItemReader<List<TransactionFileDto>> transactionFileReader,
+            ItemProcessor<List<TransactionFileDto>, List<Transaction>> transactionConverter,
+            ItemWriter<List<Transaction>> databaseWriter) {
         return new StepBuilder("transactionFileHandleStep", jobRepository)
-                .<TransactionFileDto, Transaction>chunk(3, platformTransactionManager)
+                .<List<TransactionFileDto>, List<Transaction>>chunk(3, platformTransactionManager)
                 .reader(transactionFileReader)
                 .processor(transactionConverter)
                 .writer(databaseWriter)

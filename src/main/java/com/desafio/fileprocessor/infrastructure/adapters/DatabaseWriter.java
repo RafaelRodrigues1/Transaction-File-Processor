@@ -4,10 +4,12 @@ import com.desafio.fileprocessor.domain.models.Transaction;
 import org.springframework.batch.item.Chunk;
 import org.springframework.batch.item.ItemWriter;
 
-public class DatabaseWriter implements ItemWriter<Transaction> {
+import java.util.List;
+
+public class DatabaseWriter implements ItemWriter<List<Transaction>> {
 
     @Override
-    public void write(Chunk<? extends Transaction> chunk) throws Exception {
+    public void write(Chunk<? extends List<Transaction>> chunk) throws Exception {
         System.out.println("databaseWriter");
     }
 }
