@@ -27,9 +27,8 @@ public class ScheduledFileProcessorJob {
     @Scheduled(cron = "${file-processor.job.cron}")
     public void processFile() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
         jobLauncher.run(job, new JobParametersBuilder()
-                .addString("bucket-key", "transactions.csv")
-                .addDate("launchDate", new Date())
-                .toJobParameters());
+                                .addDate("launchDate", new Date())
+                                .toJobParameters());
     }
 
 }

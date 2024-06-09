@@ -31,7 +31,7 @@ public class TransactionFileHandle {
             ItemProcessor<List<TransactionFileDto>, List<Transaction>> transactionConverter,
             ItemWriter<List<Transaction>> databaseWriter) {
         return new StepBuilder("transactionFileHandleStep", jobRepository)
-                .<List<TransactionFileDto>, List<Transaction>>chunk(1, platformTransactionManager)
+                .<List<TransactionFileDto>, List<Transaction>>chunk(2, platformTransactionManager)
                 .reader(transactionFileReader)
                 .processor(transactionConverter)
                 .writer(databaseWriter)
